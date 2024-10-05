@@ -192,12 +192,17 @@ public class TestSearch {
                         .matchAll(m -> m) // 查询所有文档
                 )
                 .from(10) // 跳过前 10 条记录
-                .size(1) // 每页返回 10 条记录
+                .size(10) // 每页返回 10 条记录
                 .sort(sort -> sort
                         .field(f -> f
                                 .field("price")
                                 .order(SortOrder.Asc)
                         )
+                ).sort(sort -> sort
+                        .field(f -> f
+                                .field("score").order(SortOrder.Desc)
+                        )
+
                 )
         );
         // 执行查询
